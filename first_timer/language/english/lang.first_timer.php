@@ -1,6 +1,6 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$L = array(
+$lang = array(
 
 //----------------------------------------
 // BASIC INFORMATION ABOUT THE EXT
@@ -21,6 +21,6 @@ $L = array(
 
 // END
 ''=>''
-);     
-
-?>
+);
+/* End of file lang.first_timer.php */
+/* Location: ./system/expressionengine/third_party/first_timer/languages/english/lang.first_timer.php */

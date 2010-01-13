@@ -2,36 +2,27 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
-================================================================
-	First Timer
-	for EllisLab ExpressionEngine - by Ryan Irelan
-----------------------------------------------------------------
-	Copyright (c) 2009 Mijingo, LLC
-================================================================
-	THIS IS COPYRIGHTED SOFTWARE. PLEASE
-	READ THE LICENSE AGREEMENT.
-----------------------------------------------------------------
-	This software is based upon and derived from
-	EllisLab ExpressionEngine software protected under
-	copyright dated 2005 - 2009. Please see
-	http://expressionengine.com/docs/license.html
-----------------------------------------------------------------
-	USE THIS SOFTWARE AT YOUR OWN RISK. WE ASSUME
-	NO WARRANTY OR LIABILITY FOR THIS SOFTWARE AS DETAILED
-	IN THE LICENSE AGREEMENT.
-================================================================
-	File:			ext.first_timer.php
-----------------------------------------------------------------
-	Version:		2.0
-----------------------------------------------------------------
-	Purpose:		Lets you redirect a user to a specific page the first time they log in.
-----------------------------------------------------------------
-	Compatibility:	EE 2.0.0
-----------------------------------------------------------------
-	Created:		2009-11-01
-================================================================
-*/
+/**
+ * RI First Timer
+ * 
+ * An ExpressionEngine extensions that lets you redirect a user to a specific page the first time they log in.
+ * 
+ * @package				first_timer
+ * @author				Ryan Irelan <ryan@mijingo.com>
+ * @copyright			Copyright (c) 2010 Mijingo, LLC
+ * @license				n/a
+ * @link 					https://github.com/ryanirelan/ri.first_timer.ee_addon.2.
+ * @since					Version 2.0
+ *
+ */
+
+/**
+ *  Changelog
+ * 
+ * Version 2.0 20100113
+ * ---------------------
+ * First public release
+ */
 
 // -----------------------------------------
 //	Begin class
@@ -54,16 +45,14 @@ class First_timer_ext
 		
 		function settings()
 		{
-			global $FNS;
-
-			// set the base url so we can use it as the default for both fields
-			$r = $FNS->create_url('');
+			$this->EE->lang->loadfile('first_timer');
 			
 			$settings = array();
 			
-			$settings['first_redirect'] = array('t', '', $r);
-			$settings['normal_redirect'] = array('t', '', $r);
-			// $settings['site_id'] = array('t', '', $r); 
+			// set the base url so we can use it as the default for both fields
+			$r = $this->EE->functions->create_url('');
+			$settings['first_redirect'] = array('i', '', $r);
+			$settings['normal_redirect'] = array('i', '', $r);
 			
 			return $settings;
 
@@ -93,7 +82,7 @@ class First_timer_ext
 																				array(
 																					'extension_id' => '',
 																					'class'        => get_class($this),
-																					'method'       => "extension_method",
+																					'method'       => "redirect_user",
 																					'hook'         => "member_member_login_single",
 																					'settings'     => "",
 																					'priority'     => 10,
@@ -177,7 +166,7 @@ class First_timer_ext
 				return FALSE;
 			}
 
-			if ($current < '1.0.1')
+			if ($current < '2.0')
 			{
 				// Update to next version
 			}
@@ -195,8 +184,11 @@ class First_timer_ext
 		function disable_extension()
 		{
 
-			$this->EE->db->query("DELETE FROM exp_extensions WHERE class = '".get_class($this)."'");
+			$this->EE->db->delete('exp_extensions', array('class' => get_class($this)));
 		}
 		// END
 }
 // END CLASS
+
+/* End of file ext.first_timer.php */
+/* Location: ./system/expressionengine/third_party/first_timer/ext.first_timer.php */
