@@ -170,9 +170,7 @@ class First_timer_ext
 				// Update to next version
 			}
 
-			$DB->query("UPDATE exp_extensions 
-									SET version = '".$DB->escape_str($this->version)."'
-									WHERE class = '".get_class($this)."'");
+			$DB->query("UPDATE exp_extensions SET version = '".$DB->escape_str($this->version)."' WHERE class = '".get_class($this)."'");
 		}
 		// END
 	
