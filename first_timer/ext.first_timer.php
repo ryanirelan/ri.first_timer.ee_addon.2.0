@@ -79,17 +79,18 @@ class First_timer_ext
 		{
 
 			$this->EE->db->insert('exp_extensions',
-																				array(
-																					'extension_id' => '',
-																					'class'        => get_class($this),
-																					'method'       => "redirect_user",
-																					'hook'         => "member_member_login_single",
-																					'settings'     => "",
-																					'priority'     => 10,
-																					'version'      => $this->version,
-																					'enabled'      => "y"
-	                                      )
-	                                 );
+				array(
+				'extension_id' => '',
+				'class'        => get_class($this),
+				'method'       => "redirect_user",
+				'hook'         => "member_member_login_single",
+				'settings'     => "",
+				'priority'     => 10,
+				'version'      => $this->version,
+				'enabled'      => "y"
+				)
+			); 
+			
 			// create new column in exp_members so we can track first timers
 	
 			// but first we need to check that the column doesn't already exist
@@ -100,7 +101,7 @@ class First_timer_ext
 	
 			foreach($column_check->result() as $column)
 			{
-				if ($column['Field'] == "first_time")
+				if ($column->Field == "first_time")
 				{
 					$first_timer_exists = TRUE;
 				}
@@ -110,9 +111,7 @@ class First_timer_ext
 	
 			if (! $first_timer_exists)
 			{
-				$this->EE->db->query("ALTER TABLE exp_members
-															ADD COLUMN first_time INT(1) 
-															DEFAULT 0");
+				$this->EE->db->query("ALTER TABLE exp_members ADD COLUMN first_time INT(1) DEFAULT 0");
 			}
 		}
 	
@@ -172,7 +171,7 @@ class First_timer_ext
 			}
 
 			$DB->query("UPDATE exp_extensions 
-									SET version = '".$DB->escape_str($this->version)."' 
+									SET version = '".$DB->escape_str($this->version)."'
 									WHERE class = '".get_class($this)."'");
 		}
 		// END
