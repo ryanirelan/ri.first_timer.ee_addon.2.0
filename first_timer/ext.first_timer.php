@@ -33,7 +33,7 @@ class First_timer_ext
 		var $settings        = array();
     
 		var $name            = 'First Timer';
-		var $version         = '2.0';
+		var $version         = '2.0.1';
 		var $description     = 'Lets you redirect a user to a specific page the first time they log in.';
 		var $settings_exist  = 'y';
 		var $docs_url        = 'https://github.com/ryanirelan/ri.first_timer.ee_addon.2.0';
@@ -53,7 +53,6 @@ class First_timer_ext
 			$r = $this->EE->functions->create_url('');
 			$settings['first_redirect'] = array('i', '', $r);
 			$settings['normal_redirect'] = array('i', '', $r);
-			
 			return $settings;
 
 		}
