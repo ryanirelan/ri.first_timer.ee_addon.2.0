@@ -164,7 +164,7 @@ class First_timer_ext
 				return FALSE;
 			}
 
-			if ($current < '2.0')
+			if ($current < '2.0.1')
 			{
 				// Update to next version
 			}
