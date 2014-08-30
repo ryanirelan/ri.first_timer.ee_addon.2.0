@@ -144,7 +144,7 @@ class First_timer_ext
 				// redirect based on the control panel setting
 				$this->EE->functions->redirect($this->settings['first_redirect']);
 			}                                                           
-			else
+			else if ($this->settings['normal_redirect']!="")
 			{
 				$this->EE->functions->redirect($this->settings['normal_redirect']);
 			}
