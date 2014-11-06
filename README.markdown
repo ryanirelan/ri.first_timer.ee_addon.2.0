@@ -1,4 +1,5 @@
 # First Timer 2.0
+_by Ryan Irelan_
 
 _Redirect members to a special landing page the first time they log in to the front-end of an ExpressionEngine site._
 
