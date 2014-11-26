@@ -11,7 +11,7 @@ _Redirect members to a special landing page the first time they log in to the fr
 
 1. Download the extension from my GitHub repository.
 2. Unzip the archive.
-3. Move the @first_timer@ directory to @/system/expressionengine/third_party@
+3. Move the `first_timer` directory to `/system/expressionengine/third_party`
 4. Log in your EE Control Panel, go to the Extensions manager and enable the extension.
 
 ## Usage
