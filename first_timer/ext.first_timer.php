@@ -3,26 +3,19 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * RI First Timer
+ * Mijingo First Timer
  * 
  * An ExpressionEngine extensions that lets you redirect a user to a specific page the first time they log in.
  * 
  * @package				first_timer
  * @author				Ryan Irelan <ryan@mijingo.com>
- * @copyright			Copyright (c) 2010 Mijingo, LLC
+ * @copyright			Copyright (c) 2014 Mijingo, LLC
  * @license				n/a
- * @link 					https://github.com/ryanirelan/ri.first_timer.ee_addon.2.
- * @since					Version 2.0
+ * @link 				https://github.com/ryanirelan/ri.first_timer.ee_addon.2.
+ * @since				Version 2.0
  *
  */
 
-/**
- *  Changelog
- * 
- * Version 2.0 20100113
- * ---------------------
- * First public release
- */
 
 // -----------------------------------------
 //	Begin class
@@ -48,13 +41,33 @@ class First_timer_ext
 			$this->EE->lang->loadfile('first_timer');
 			
 			$settings = array();
+
+			$member_groups = $this->ee()->get_member_groups;
 			
 			// set the base url so we can use it as the default for both fields
 			$r = $this->EE->functions->create_url('');
 			$settings['first_redirect'] = array('i', '', $r);
 			$settings['normal_redirect'] = array('i', '', $r);
+			$settings['member_group'] = array('s', $member_groups);
 			return $settings;
 
+			// settings to control which member group is redirected
+
+
+		}
+
+		function get_member_groups()
+		{
+			$groups = array();
+
+			$fetch_groups = ee()->db->select('group_id', 'group_title')
+			->from('member_groups')
+			->get();
+
+			if ($fetch_groups->num_rows() > 0)
+			{
+				return $fetch_groups->result_array();
+			}
 		}
 
 
